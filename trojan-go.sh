@@ -925,9 +925,9 @@ showLog() {
 menu() {
     clear
     echo "#############################################################"
-    echo -e "#                    ${RED}trojan-go一键安装脚本${PLAIN}                      #"
-    echo -e "# ${GREEN}原作者${PLAIN}: 网络跳越(hijk)                                      #"
-    echo -e "# ${GREEN}修改${PLAIN}: Hans3n。                                            #"
+    echo -e "#                    ${RED}trojan-go一键安装脚本${PLAIN}                    "
+    echo -e "# ${GREEN}作者${PLAIN}: 网络跳越(hijk)                                      "
+    echo -e "# ${GREEN}修改${PLAIN}: Hans3n。                                           "
     echo "#############################################################"
     echo ""
 
