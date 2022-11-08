@@ -1,6 +1,5 @@
 #!/bin/bash
 # trojan-go一键安装脚本
-# Author: hijk<https://hijk.art>
 
 
 RED="\033[31m"      # Error message
@@ -11,12 +10,12 @@ PLAIN='\033[0m'
 
 OS=`hostnamectl | grep -i system | cut -d: -f2`
 
-V6_PROXY=""
-IP=`curl -sL -4 ip.sb`
-if [[ "$?" != "0" ]]; then
-    IP=`curl -sL -6 ip.sb`
-    V6_PROXY="https://gh.hijk.art/"
-fi
+# V6_PROXY=""
+# IP=`curl -sL -4 ip.sb`
+# if [[ "$?" != "0" ]]; then
+#     IP=`curl -sL -6 ip.sb`
+#     V6_PROXY="https://gh.hijk.art/"
+# fi
 
 BT="false"
 NGINX_CONF_PATH="/etc/nginx/conf.d/"
