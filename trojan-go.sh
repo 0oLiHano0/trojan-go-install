@@ -10,12 +10,12 @@ PLAIN='\033[0m'
 
 OS=`hostnamectl | grep -i system | cut -d: -f2`
 
-V6_PROXY=""
-IP=`curl -sL -4 ip.sb`
-if [[ "$?" != "0" ]]; then
-    IP=`curl -sL -6 ip.sb`
-    V6_PROXY="https://hans3n.top/"
-fi
+# V6_PROXY=""
+# IP=`curl -sL -4 ip.sb`
+# if [[ "$?" != "0" ]]; then
+#     IP=`curl -sL -6 ip.sb`
+#     V6_PROXY="https://hans3n.top/"
+# fi
 
 BT="false"
 NGINX_CONF_PATH="/etc/nginx/conf.d/"
@@ -122,7 +122,7 @@ statusText() {
 }
 
 getVersion() {
-    VERSION=`curl -fsSL ${V6_PROXY}https://api.github.com/repos/p4gefau1t/trojan-go/releases | grep tag_name | sed -E 's/.*"v(.*)".*/\1/'| head -n1`
+    VERSION=`curl -fsSL https://api.github.com/repos/p4gefau1t/trojan-go/releases | grep tag_name | sed -E 's/.*"v(.*)".*/\1/'| head -n1`
     if [[ ${VERSION:0:1} != "v" ]];then
         VERSION="v${VERSION}"
     fi
@@ -542,7 +542,7 @@ EOF
 
 downloadFile() {
     SUFFIX=`archAffix`
-    DOWNLOAD_URL="${V6_PROXY}https://github.com/p4gefau1t/trojan-go/releases/download/${VERSION}/trojan-go-linux-${SUFFIX}.zip"
+    DOWNLOAD_URL="https://github.com/p4gefau1t/trojan-go/releases/download/${VERSION}/trojan-go-linux-${SUFFIX}.zip"
     wget -O /tmp/${ZIP_FILE}.zip $DOWNLOAD_URL
     if [[ ! -f /tmp/${ZIP_FILE}.zip ]]; then
         echo -e "{$RED} trojan-go安装文件下载失败，请检查网络或重试${PLAIN}"
@@ -701,7 +701,7 @@ installBBR() {
 
     colorEcho $BLUE " 安装BBR模块..."
     if [[ "$PMT" = "yum" ]]; then
-        if [[ "$V6_PROXY" = "" ]]; then
+#        if [[ "$V6_PROXY" = "" ]]; then
             rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
             rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-4.el7.elrepo.noarch.rpm
             $CMD_INSTALL --enablerepo=elrepo-kernel kernel-ml
@@ -709,7 +709,7 @@ installBBR() {
             grub2-set-default 0
             echo "tcp_bbr" >> /etc/modules-load.d/modules.conf
             INSTALL_BBR=true
-        fi
+#         fi
     else
         $CMD_INSTALL --install-recommends linux-generic-hwe-16.04
         grub-set-default 0
